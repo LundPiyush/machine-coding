@@ -1,20 +1,30 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { AuthProvider } from "./src/context/auth-context";
-import Nav from "./src/components/Nav/Nav";
-
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Books from "./src/components/Books/Books";
+import { BooksProvider } from "./src/context/books-context";
+import Search from "./src/components/Search/Search";
+import { createBrowserRouter } from "react-router-dom";
 function App() {
   return (
     <div>
-      App here
-      <Nav />
+      <Routes>
+        <Route path="/search" element={<Search />}>
+          Search page
+        </Route>
+        <Route path="/" element={<Books />}>
+          Main page
+        </Route>
+      </Routes>
     </div>
   );
 }
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <AuthProvider>
-    <App />
-  </AuthProvider>
+  <BrowserRouter>
+    <BooksProvider>
+      <App />
+    </BooksProvider>
+  </BrowserRouter>
 );
 export default App;
