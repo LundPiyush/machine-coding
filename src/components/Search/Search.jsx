@@ -22,6 +22,7 @@ const Search = () => {
           searchHandler(e.target.value);
         }}
       />
+      <p>Search books Authour name - (eg.Matthew)</p>
       <div className="books-list">
         {searchBooks.map((book) => {
           const {
