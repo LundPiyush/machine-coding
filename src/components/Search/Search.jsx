@@ -7,14 +7,13 @@ const Search = () => {
   const [searchBooks, setSearchBooks] = useState([]);
 
   const searchHandler = (searchText) => {
-    console.log(searchText);
+    console.log(books);
     setSearchBooks(() =>
       books.filter((book) => {
         return book.author.toLowerCase().includes(searchText.toLowerCase());
       })
     );
   };
-  console.log(searchBooks);
   return (
     <div>
       <Link to="/">Return to main page</Link>
@@ -50,9 +49,19 @@ const Search = () => {
                 <p>Category - {bookType}</p>
               </div>
               <select onChange={(e) => changeBooksState(book, e.target.value)}>
-                <option value="current_read">Current Reading</option>
-                <option value="want_to_read">Want to read</option>
-                <option value="read">Read</option>
+                <option
+                  value="current_read"
+                  selected={bookState === "current_read"}>
+                  Current Reading
+                </option>
+                <option
+                  value="want_to_read"
+                  selected={bookState === "want_to_read"}>
+                  Want to read
+                </option>
+                <option value="read" selected={bookState === "read"}>
+                  Read
+                </option>
                 <option value="none">None</option>
               </select>
               <div className="card-price">

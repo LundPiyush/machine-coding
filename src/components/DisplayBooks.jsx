@@ -6,7 +6,7 @@ const DisplayBooks = ({ category }) => {
   const { books } = useBooks();
 
   const categoryBooks = books.filter(({ bookState }) => bookState === category);
-  console.log("category", category, categoryBooks.length);
+
   return (
     <div className="books-list">
       {categoryBooks.map((book) => (
