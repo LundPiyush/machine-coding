@@ -7,12 +7,14 @@ const Search = () => {
   const [searchBooks, setSearchBooks] = useState([]);
 
   const searchHandler = (searchText) => {
+    console.log(searchText);
     setSearchBooks(() =>
-      books.filter((book) =>
-        book.author.toLowerCase().includes(searchText.toLowerCase())
-      )
+      books.filter((book) => {
+        return book.author.toLowerCase().includes(searchText.toLowerCase());
+      })
     );
   };
+  console.log(searchBooks);
   return (
     <div>
       <Link to="/">Return to main page</Link>
@@ -41,26 +43,23 @@ const Search = () => {
             totalStars,
           } = book;
           return (
-            bookState === "current_read" && (
-              <div key={id} className="card">
-                <img src={coverImg} />
-                <div className="card-details">
-                  <p className="card-author-name">{author}</p>
-                  <p>Category - {bookType}</p>
-                </div>
-                <select
-                  onChange={(e) => changeBooksState(book, e.target.value)}>
-                  <option value="current_read">Current Reading</option>
-                  <option value="want_to_read">Want to read</option>
-                  <option value="read">Read</option>
-                  <option value="none">None</option>
-                </select>
-                <div className="card-price">
-                  <p>Price Rs.{originalPrice}</p>
-                  <p>Discount Rs.{discountPrice}</p>
-                </div>
+            <div key={id} className="card">
+              <img src={coverImg} />
+              <div className="card-details">
+                <p className="card-author-name">{author}</p>
+                <p>Category - {bookType}</p>
               </div>
-            )
+              <select onChange={(e) => changeBooksState(book, e.target.value)}>
+                <option value="current_read">Current Reading</option>
+                <option value="want_to_read">Want to read</option>
+                <option value="read">Read</option>
+                <option value="none">None</option>
+              </select>
+              <div className="card-price">
+                <p>Price Rs.{originalPrice}</p>
+                <p>Discount Rs.{discountPrice}</p>
+              </div>
+            </div>
           );
         })}
       </div>
